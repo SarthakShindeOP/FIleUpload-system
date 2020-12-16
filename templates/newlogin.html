@@ -1,0 +1,34 @@
+{% extends 'jokes.html' %}
+{% load static %}
+
+    {% block content %}
+    {%if taken%}
+<div class="alert alert-danger" role="alert">
+    {{taken}}
+   {% endif%}
+</div>
+{%if message1%}
+<div class="alert alert-danger" role="alert">
+    {{message1}}
+  </div>   
+  {% endif%}
+    <form action="newlogin" method="POST"> 
+        {% csrf_token %}
+    <div>
+    <h1>{{noaccountfound}}</h1>
+    <h3>Username </h3>
+        <input type="text" placeholer="write tag" name="username" autocomplete="off">
+    <br>
+    <h3>Password </h3>
+        <input type="password" placeholer="write tag" name="password1">
+        <br>
+    <h3>Confirm Password </h3>
+        <input type="password" placeholer="write tag" name="password2">
+        <br>
+<br>
+
+<button type="Submit" class="btn btn-outline-success">Create</button>
+</div>
+    </form>
+    {% endblock%}
+

@@ -1,0 +1,44 @@
+{% extends 'jokes.html' %}
+{% load static %}
+{% block content %}
+{%for i in check%}
+<div class="alert alert-success" role="alert">
+   Welcome {{i.Username}}
+</div>   
+{%endfor%}
+{% if filenotfound %}
+<div class="alert alert-danger" role="alert">
+  {{filenotfound}}
+  {%endif%}
+</div>   
+{% if upload %}
+<div class="alert alert-success" role="alert">
+  {{upload}}
+{%endif%}
+</div>  
+<div class="main">
+
+<form action="submit" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+
+<div class="mb-3">
+    <label for="inputfile" class="form-label" style="color: aliceblue;">Multiple files input example</label>
+    <input class="form-control" type="file" name="insert" id="inputfile" multiple>
+  </div>
+<br><br>
+
+
+<br><br>
+<button type="Submit" class="btn btn-outline-success">Upload</button>
+
+<br><br><br>
+</form>
+
+<h3>{{uploaded}}</h3>
+
+{%for userfile in userfile%}
+
+<a href="{{userfile.file.url}}"> {{userfile.file}}</a><br><br>
+{%endfor%}
+</div>
+{% endblock%}
